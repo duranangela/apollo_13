@@ -14,4 +14,13 @@ describe 'astronauts index' do
     expect(page).to have_content(astronaut_2.age)
     expect(page).to have_content(astronaut_2.job)
   end
+  it 'user sees the average age for all astronauts' do
+    astronaut_1 = Astronaut.create(name: 'Neil Armstrong', age: 36, job: 'Commander')
+    astronaut_2 = Astronaut.create(name: 'Buzz Aldrin', age: 34, job: 'Pilot')
+    astronaut_3 = Astronaut.create(name: 'Other Guy', age: 32, job: 'Other Astronaut')
+
+    visit '/astronauts'
+
+    expect(page).to have_content(Astronaut.average_age)
+  end
 end
